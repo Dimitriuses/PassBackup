@@ -12,11 +12,7 @@ namespace PassBackup
 {
     public partial class Add : Form
     {
-        public string Name { get; set; }
-        public string URL { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Description { get; set; }
+        Acount acount = new Acount();
         public Add()
         {
             InitializeComponent();
@@ -31,11 +27,11 @@ namespace PassBackup
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Name = textBoxName.Text;
-            URL = textBoxURL.Text;
-            Login = textBoxLogin.Text;
-            Password = textBoxPass.Text;
-            Description = richTextBox1.Text;
+            acount.Name = textBoxName.Text;
+            acount.URL = textBoxURL.Text;
+            acount.Login = textBoxLogin.Text;
+            acount.Password = textBoxPass.Text;
+            acount.Description = richTextBox1.Text;
             DialogResult = DialogResult.OK;
         }
 

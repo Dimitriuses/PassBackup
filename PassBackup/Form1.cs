@@ -21,7 +21,7 @@ namespace PassBackup
         public Form1()
         {
             InitializeComponent();
-            
+            LogPass = new DataSet1();
         }
 
         private void додатиАкаунтToolStripMenuItem_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace PassBackup
                 {
                     pach = true;
                     SavePach = dlg.FileName;
-                    //UpdateTab();
+                    UpdateTab();
                 }
             }
             else
@@ -76,7 +76,7 @@ namespace PassBackup
                     {
                         pach = true;
                         SavePach = dlg.FileName;
-                        //UpdateTab();
+                        UpdateTab();
                     }
                 }
             }
@@ -89,8 +89,34 @@ namespace PassBackup
             var sqliteAdapter = new SQLiteDataAdapter("SELECT * FROM Backup", sqliteConnection);
             var cmdBuilder = new SQLiteCommandBuilder(sqliteAdapter);
             sqliteAdapter.Update(table);
-            dataGridView1.Rows.Add(table);
+            LogPass.Tables.Add(table);
+            dataGridView1.DataSource = LogPass;
+            dataGridView1.DataMember = "Backup";
         }
 
+        private void створитиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = " SQLite files (*.sqlite) | *.sqlite";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                SavePach = dlg.FileName;
+                pach = true;
+                SQLiteConnection con =
+                new SQLiteConnection($"Data Source={SavePach}");
+                con.Open();
+                string query =
+                    "CREATE TABLE Backup (" +
+                    "Id integer PRIMARY KEY AUTOINCREMENT, " +
+                    "Site text NOT NULL, " +
+                    "URL text NOT NULL, " +
+                    "Login text NOT NULL, " +
+                    "Password text NOT NULL," +
+                    "Decription test NOT NULL );";// +
+                //"TFuelConsumption real NOT NULL";
+                SQLiteCommand cmd = new SQLiteCommand(query, con);
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

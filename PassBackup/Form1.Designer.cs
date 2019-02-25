@@ -36,8 +36,6 @@
             this.інструментиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.додатиАкаунтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataSet1 = new PassBackup.DataSet1();
-            this.backupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.siteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uRLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,10 +44,13 @@
             this.visibleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cruptDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.decriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.backupBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSet1 = new PassBackup.DataSet1();
+            this.створитиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backupBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -67,7 +68,8 @@
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.відкритиToolStripMenuItem,
-            this.зберегтиToolStripMenuItem});
+            this.зберегтиToolStripMenuItem,
+            this.створитиToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -75,14 +77,14 @@
             // відкритиToolStripMenuItem
             // 
             this.відкритиToolStripMenuItem.Name = "відкритиToolStripMenuItem";
-            this.відкритиToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.відкритиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.відкритиToolStripMenuItem.Text = "Відкрити";
             this.відкритиToolStripMenuItem.Click += new System.EventHandler(this.відкритиToolStripMenuItem_Click);
             // 
             // зберегтиToolStripMenuItem
             // 
             this.зберегтиToolStripMenuItem.Name = "зберегтиToolStripMenuItem";
-            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.зберегтиToolStripMenuItem.Text = "Зберегти";
             // 
             // інструментиToolStripMenuItem
@@ -122,16 +124,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(749, 237);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "DataSet1";
-            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // backupBindingSource
-            // 
-            this.backupBindingSource.DataMember = "Backup";
-            this.backupBindingSource.DataSource = this.dataSet1;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -181,6 +173,23 @@
             this.decriptionDataGridViewTextBoxColumn.HeaderText = "Decription";
             this.decriptionDataGridViewTextBoxColumn.Name = "decriptionDataGridViewTextBoxColumn";
             // 
+            // backupBindingSource
+            // 
+            this.backupBindingSource.DataMember = "Backup";
+            this.backupBindingSource.DataSource = this.dataSet1;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "DataSet1";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // створитиToolStripMenuItem
+            // 
+            this.створитиToolStripMenuItem.Name = "створитиToolStripMenuItem";
+            this.створитиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.створитиToolStripMenuItem.Text = "Створити";
+            this.створитиToolStripMenuItem.Click += new System.EventHandler(this.створитиToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,8 +203,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backupBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,6 +229,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cruptDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn decriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource backupBindingSource;
+        private System.Windows.Forms.ToolStripMenuItem створитиToolStripMenuItem;
     }
 }
 
