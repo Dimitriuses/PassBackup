@@ -12,11 +12,12 @@ namespace PassBackup
 {
     public partial class Add : Form
     {
-        Acount acount = new Acount();
+        public Acount acount { set; get; }
         public Add()
         {
             InitializeComponent();
             checkBox1_CheckedChanged(null, null);
+            acount = new Acount();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

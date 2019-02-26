@@ -22,6 +22,8 @@ namespace PassBackup
         {
             InitializeComponent();
             LogPass = new DataSet1();
+            dataGridView1.DataSource = LogPass;
+            dataGridView1.DataMember = "Backup";
         }
 
         private void додатиАкаунтToolStripMenuItem_Click(object sender, EventArgs e)
@@ -35,7 +37,7 @@ namespace PassBackup
             //Crupt.CheckState = CheckState.Indeterminate;
             if(form.ShowDialog() == DialogResult.OK)
             {
-                var id = Guid.NewGuid();
+                //var id = Guid.NewGuid();
                 //object[] item =
                 //{
                 //    id,
@@ -47,7 +49,11 @@ namespace PassBackup
                 //    Crupt,
                 //    form.Description
                 //};
-                //dataGridView1.Rows.Add(item);
+
+                LogPass.Backup.Rows.Add(form.acount.To_DataTable(LogPass.Backup));
+                //dataGridView1.DataSource = LogPass;
+                //dataGridView1.DataMember = "Backup";
+                dataGridView1.Update();
 
             }
         }
@@ -62,7 +68,7 @@ namespace PassBackup
                 {
                     pach = true;
                     SavePach = dlg.FileName;
-                    UpdateTab();
+                    //UpdateTab();
                 }
             }
             else
@@ -76,23 +82,28 @@ namespace PassBackup
                     {
                         pach = true;
                         SavePach = dlg.FileName;
-                        UpdateTab();
+                        //UpdateTab();
                     }
                 }
             }
         }
 
-        private void UpdateTab()
-        {
-            SQLiteConnection sqliteConnection = new SQLiteConnection($"Data Source={SavePach}");
-            DataTable table = new DataTable();
-            var sqliteAdapter = new SQLiteDataAdapter("SELECT * FROM Backup", sqliteConnection);
-            var cmdBuilder = new SQLiteCommandBuilder(sqliteAdapter);
-            sqliteAdapter.Update(table);
-            LogPass.Tables.Add(table);
-            dataGridView1.DataSource = LogPass;
-            dataGridView1.DataMember = "Backup";
-        }
+        //private void UpdateTab()
+        //{
+        //    SQLiteConnection sqliteConnection = new SQLiteConnection($"Data Source={SavePach}");
+        //    DataTable table = new DataTable();
+        //    var sqliteAdapter = new SQLiteDataAdapter("SELECT * FROM Backup", sqliteConnection);
+        //    var cmdBuilder = new SQLiteCommandBuilder(sqliteAdapter);
+        //    sqliteAdapter.Update(table);
+        //    foreach (DataRow item in table.Rows)
+        //    {
+        //        LogPass.Backup.Rows.Add(item);
+        //    }
+        //    //LogPass.Tables.Add(table);
+        //    //dataGridView1.DataSource = LogPass;
+        //    //dataGridView1.DataMember = "Backup";
+        //    dataGridView1.Update();
+        //}
 
         private void створитиToolStripMenuItem_Click(object sender, EventArgs e)
         {
