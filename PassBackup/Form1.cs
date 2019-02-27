@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
@@ -15,15 +16,16 @@ namespace PassBackup
     {
         public bool pach { get; set; }
         private string SavePach;
-        DataSet1 LogPass;
-        
+       
+        ApplicationContext db;
 
         public Form1()
         {
             InitializeComponent();
-            LogPass = new DataSet1();
-            dataGridView1.DataSource = LogPass;
-            dataGridView1.DataMember = "Backup";
+            db = new ApplicationContext();
+            db.Backups.Load();
+            dataGridView1.DataSource = db.Backups.Local.ToBindingList();
+           
         }
 
         private void додатиАкаунтToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,9 +52,13 @@ namespace PassBackup
                 //    form.Description
                 //};
 
-                LogPass.Backup.Rows.Add(form.acount.To_DataTable(LogPass.Backup));
+
                 //dataGridView1.DataSource = LogPass;
                 //dataGridView1.DataMember = "Backup";
+
+                Backup backup = form.acount;
+                db.Backups.Add(backup);
+                db.SaveChanges();
                 dataGridView1.Update();
 
             }

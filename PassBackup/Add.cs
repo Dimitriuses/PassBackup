@@ -12,12 +12,15 @@ namespace PassBackup
 {
     public partial class Add : Form
     {
-        public Acount acount { set; get; }
+        //public Acount acount { set; get; }
+        public Backup acount { get; set; }
         public Add()
         {
             InitializeComponent();
             checkBox1_CheckedChanged(null, null);
-            acount = new Acount();
+            acount = new Backup();
+
+
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -28,11 +31,14 @@ namespace PassBackup
 
         private void button2_Click(object sender, EventArgs e)
         {
-            acount.Name = textBoxName.Text;
+            acount.Site = textBoxName.Text;
             acount.URL = textBoxURL.Text;
             acount.Login = textBoxLogin.Text;
             acount.Password = textBoxPass.Text;
-            acount.Description = richTextBox1.Text;
+            acount.Decription = richTextBox1.Text;
+
+            acount.Visible = "False";
+            acount.Crupt = "False";
             DialogResult = DialogResult.OK;
         }
 
