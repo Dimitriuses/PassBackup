@@ -31,7 +31,7 @@ namespace PassBackup
 
         private void button2_Click(object sender, EventArgs e)
         {
-            acount.Site = textBoxName.Text;
+            acount.site = textBoxName.Text;
             acount.URL = textBoxURL.Text;
             acount.Login = textBoxLogin.Text;
             acount.Password = textBoxPass.Text;

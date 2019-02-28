@@ -13,6 +13,6 @@ namespace PassBackup
         {
 
         }
-        public DbSet<Backup> Backups { get; set; }
+        public DbSet<Backup> Backup { get; set; }
     }
 }

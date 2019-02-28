@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PassBackup
 {
-    public class Backup: INotifyPropertyChanged
+    public class Backup//: INotifyPropertyChanged
     {
-        private string title;
+        /*private string title;
         private string site;
         private string url;
         private string login;
@@ -21,15 +21,15 @@ namespace PassBackup
 
         public int Id { get; set; }
 
-        public string Title
-        {
-            get { return title; }
-            set
-            {
-                title = value;
-                OnPropertyChanged("Title");
-            }
-        }
+        //public string Title
+        //{
+        //    get { return title; }
+        //    set
+        //    {
+        //        title = value;
+        //        OnPropertyChanged("Title");
+        //    }
+        //}
         public string Site
         {
             get { return site; }
@@ -98,6 +98,14 @@ namespace PassBackup
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
+        }*/
+        public int id { get; set; }
+        public string site { get; set; }
+        public string URL { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string Visible { get; set; }
+        public string Crupt { get; set; }
+        public string Decription { get; set; }
     }
 }

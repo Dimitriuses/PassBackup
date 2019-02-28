@@ -23,18 +23,18 @@ namespace PassBackup
         {
             InitializeComponent();
             db = new ApplicationContext();
-            db.Backups.Load();
-            dataGridView1.DataSource = db.Backups.Local.ToBindingList();
+            db.Backup.Load();
+            dataGridView1.DataSource = db.Backup.Local.ToBindingList();
            
         }
 
         private void додатиАкаунтToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Add form = new Add();
-            DataGridViewCheckBoxColumn Visible = new DataGridViewCheckBoxColumn(false);
+            //DataGridViewCheckBoxColumn Visible = new DataGridViewCheckBoxColumn(false);
             //Visible.Checked = false;
             //Visible.CheckState = CheckState.Indeterminate;
-            DataGridViewCheckBoxColumn Crupt = new DataGridViewCheckBoxColumn(false);
+            //DataGridViewCheckBoxColumn Crupt = new DataGridViewCheckBoxColumn(false);
             //Crupt.Checked = false;
             //Crupt.CheckState = CheckState.Indeterminate;
             if(form.ShowDialog() == DialogResult.OK)
@@ -57,7 +57,8 @@ namespace PassBackup
                 //dataGridView1.DataMember = "Backup";
 
                 Backup backup = form.acount;
-                db.Backups.Add(backup);
+                backup.id = dataGridView1.RowCount + 1;
+                db.Backup.Add(backup);
                 db.SaveChanges();
                 dataGridView1.Update();
 
@@ -66,32 +67,32 @@ namespace PassBackup
 
         private void відкритиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count == 0)
-            {
-                OpenFileDialog dlg = new OpenFileDialog();
-                dlg.Filter = " SQLite files (*.sqlite) | *.sqlite";
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    pach = true;
-                    SavePach = dlg.FileName;
-                    //UpdateTab();
-                }
-            }
-            else
-            {
-                var rez = MessageBox.Show(" ", "Seving", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (DialogResult.Yes == rez)
-                {
-                    OpenFileDialog dlg = new OpenFileDialog();
-                    dlg.Filter = " SQLite files (*.sqlite) | *.sqlite";
-                    if (dlg.ShowDialog() == DialogResult.OK)
-                    {
-                        pach = true;
-                        SavePach = dlg.FileName;
-                        //UpdateTab();
-                    }
-                }
-            }
+            //if (dataGridView1.Rows.Count == 0)
+            //{
+            //    OpenFileDialog dlg = new OpenFileDialog();
+            //    dlg.Filter = " SQLite files (*.sqlite) | *.sqlite";
+            //    if (dlg.ShowDialog() == DialogResult.OK)
+            //    {
+            //        pach = true;
+            //        SavePach = dlg.FileName;
+            //        //UpdateTab();
+            //    }
+            //}
+            //else
+            //{
+            //    var rez = MessageBox.Show(" ", "Seving", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //    if (DialogResult.Yes == rez)
+            //    {
+            //        OpenFileDialog dlg = new OpenFileDialog();
+            //        dlg.Filter = " SQLite files (*.sqlite) | *.sqlite";
+            //        if (dlg.ShowDialog() == DialogResult.OK)
+            //        {
+            //            pach = true;
+            //            SavePach = dlg.FileName;
+            //            //UpdateTab();
+            //        }
+            //    }
+            //}
         }
 
         //private void UpdateTab()
@@ -113,27 +114,29 @@ namespace PassBackup
 
         private void створитиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Filter = " SQLite files (*.sqlite) | *.sqlite";
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                SavePach = dlg.FileName;
-                pach = true;
-                SQLiteConnection con =
-                new SQLiteConnection($"Data Source={SavePach}");
-                con.Open();
-                string query =
-                    "CREATE TABLE Backup (" +
-                    "Id integer PRIMARY KEY AUTOINCREMENT, " +
-                    "Site text NOT NULL, " +
-                    "URL text NOT NULL, " +
-                    "Login text NOT NULL, " +
-                    "Password text NOT NULL," +
-                    "Decription test NOT NULL );";// +
-                //"TFuelConsumption real NOT NULL";
-                SQLiteCommand cmd = new SQLiteCommand(query, con);
-                cmd.ExecuteNonQuery();
-            }
+            //SaveFileDialog dlg = new SaveFileDialog();
+            //dlg.Filter = " SQLite files (*.sqlite) | *.sqlite";
+            //if (dlg.ShowDialog() == DialogResult.OK)
+            //{
+            //    SavePach = dlg.FileName;
+            //    pach = true;
+            //    SQLiteConnection con =
+            //    new SQLiteConnection($"Data Source={SavePach}");
+            //    con.Open();
+            //    string query =
+            //        "CREATE TABLE Backup (" +
+            //        "Id integer PRIMARY KEY AUTOINCREMENT, " +
+            //        "Site text NOT NULL, " +
+            //        "URL text NOT NULL, " +
+            //        "Login text NOT NULL, " +
+            //        "Password text NOT NULL," +
+            //        "Visible text NOT NULL"+
+            //        "Crupt text NOT NULL"+
+            //        "Decription test NOT NULL );";// +
+            //    //"TFuelConsumption real NOT NULL";
+            //    SQLiteCommand cmd = new SQLiteCommand(query, con);
+            //    cmd.ExecuteNonQuery();
+            //}
         }
     }
 }
