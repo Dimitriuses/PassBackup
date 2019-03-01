@@ -19,6 +19,11 @@ namespace PassBackup
             InitializeComponent();
             checkBox1_CheckedChanged(null, null);
             acount = backup;
+            textBoxName.Text = acount.Site;
+            textBoxURL.Text = acount.URL;
+            textBoxLogin.Text = acount.Login;
+            textBoxPass.Text = acount.Password;
+            richTextBox1.Text = acount.Decription;
 
 
         }
@@ -37,8 +42,8 @@ namespace PassBackup
             acount.Password = textBoxPass.Text;
             acount.Decription = richTextBox1.Text;
 
-            acount.Visible = "False";
-            acount.Crupt = "False";
+            acount.Visible = (acount.Visible == null) ? "False" : acount.Visible;
+            acount.Crupt = (acount.Crupt == null) ? "False" : acount.Crupt;
             DialogResult = DialogResult.OK;
         }
 

@@ -146,10 +146,10 @@ namespace PassBackup
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //MessageBox.Show(e.ColumnIndex.ToString()+" "+e.RowIndex.ToString());
+            Backup backup = db.Backup.Find(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
             if(e.ColumnIndex == 5 || e.ColumnIndex == 6)
             {
                 //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-                Backup backup = db.Backup.Find(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
                 if (backup != null)
                 {
                     switch (e.ColumnIndex)
@@ -169,7 +169,18 @@ namespace PassBackup
                     UpdaterTableWiwer();
                 }
             }
+            else
+            {
+                
+                Add form = new Add(backup);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Backup tmp = form.acount;
 
+                    db.SaveChanges();
+                    UpdaterTableWiwer();
+                }
+            }
         }
         private string T_bool(string B_in)
         {
@@ -226,5 +237,6 @@ namespace PassBackup
                 e.Value = new String('\u25CF', e.Value.ToString().Length);
             }
         }
+
     }
 }
