@@ -25,12 +25,16 @@ namespace PassBackup
             db = new ApplicationContext();
             db.Backup.Load();
             dataGridView1.DataSource = db.Backup.Local.ToBindingList();
-           
+            //UpdaterTableWiwer();
+            //DataGridViewCellEventArgs e = new DataGridViewCellEventArgs(5, 0);
+            //dataGridView1_CellDoubleClick(null, e);
+            //dataGridView1_CellDoubleClick(null, e);
+            
         }
 
         private void додатиАкаунтToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Add form = new Add();
+            Add form = new Add(new Backup());
             //DataGridViewCheckBoxColumn Visible = new DataGridViewCheckBoxColumn(false);
             //Visible.Checked = false;
             //Visible.CheckState = CheckState.Indeterminate;
@@ -60,7 +64,7 @@ namespace PassBackup
                 backup.id = dataGridView1.RowCount + 1;
                 db.Backup.Add(backup);
                 db.SaveChanges();
-                dataGridView1.Update();
+                UpdaterTableWiwer();
 
             }
         }
@@ -137,6 +141,90 @@ namespace PassBackup
             //    SQLiteCommand cmd = new SQLiteCommand(query, con);
             //    cmd.ExecuteNonQuery();
             //}
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //MessageBox.Show(e.ColumnIndex.ToString()+" "+e.RowIndex.ToString());
+            if(e.ColumnIndex == 5 || e.ColumnIndex == 6)
+            {
+                //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                Backup backup = db.Backup.Find(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                if (backup != null)
+                {
+                    switch (e.ColumnIndex)
+                    {
+                        case 5:
+                            backup.Visible = T_bool(backup.Visible);
+                            break;
+                        case 6:
+                            backup.Crupt = T_bool(backup.Crupt);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    db.Entry(backup).State = EntityState.Modified;
+                    db.SaveChanges();
+                    UpdaterTableWiwer();
+                }
+            }
+
+        }
+        private string T_bool(string B_in)
+        {
+            return (B_in == "True") ? "False" : (B_in == "False") ? "True" : "False";
+        }
+        private void UpdaterTableWiwer()
+        {
+            dataGridView1.Update();
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if(dataGridView1.Rows[i].Cells[5].Value.ToString() == "True")
+                {
+                    dataGridView1.Rows[i].Cells[5].Style.BackColor = Color.LightGreen;
+
+                }
+                else if(dataGridView1.Rows[i].Cells[5].Value.ToString() == "False")
+                {
+                    dataGridView1.Rows[i].Cells[5].Style.BackColor = Color.IndianRed;
+                    //dataGridView1.Rows[i].Cells[4].Value
+                }
+                else
+                {
+                    dataGridView1.Rows[i].Cells[5].Style.BackColor = Color.LightYellow;
+                }
+
+
+                if (dataGridView1.Rows[i].Cells[6].Value.ToString() == "True")
+                {
+                    dataGridView1.Rows[i].Cells[6].Style.BackColor = Color.LightGreen;
+                }
+                else if (dataGridView1.Rows[i].Cells[6].Value.ToString() == "False")
+                {
+                    dataGridView1.Rows[i].Cells[6].Style.BackColor = Color.IndianRed;
+                }
+                else
+                {
+                    dataGridView1.Rows[i].Cells[6].Style.BackColor = Color.LightYellow;
+                }
+            }
+            //dataGridView1.Update();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            UpdaterTableWiwer();
+            timer1.Stop();
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 4 && dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString() == "False" &&e.Value != null)
+            {
+                //dataGridView1.Rows[e.RowIndex].Tag = e.Value;
+                e.Value = new String('\u25CF', e.Value.ToString().Length);
+            }
         }
     }
 }

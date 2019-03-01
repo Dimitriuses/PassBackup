@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -8,9 +10,10 @@ using System.Threading.Tasks;
 
 namespace PassBackup
 {
-    public class Backup//: INotifyPropertyChanged
+    public class Backup : INotifyPropertyChanged
     {
-        /*private string title;
+        
+        //private string title;
         private string site;
         private string url;
         private string login;
@@ -19,7 +22,9 @@ namespace PassBackup
         private string crupt;
         private string decription;
 
-        public int Id { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int id { get; set; }
 
         //public string Title
         //{
@@ -98,14 +103,14 @@ namespace PassBackup
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }*/
-        public int id { get; set; }
+        }//*/
+        /*public int id { get; set; }
         public string site { get; set; }
         public string URL { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string Visible { get; set; }
         public string Crupt { get; set; }
-        public string Decription { get; set; }
+        public string Decription { get; set; }*/
     }
 }
