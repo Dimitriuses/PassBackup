@@ -223,11 +223,11 @@ namespace PassBackup
             //dataGridView1.Update();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            UpdaterTableWiwer();
-            timer1.Stop();
-        }
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    UpdaterTableWiwer();
+        //    timer1.Stop();
+        //}
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -238,5 +238,31 @@ namespace PassBackup
             }
         }
 
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            UpdaterTableWiwer();
+        }
+
+        //private void dataGridView1_ControlRemoved(object sender, ControlEventArgs e)
+        //{
+            
+        //}
+
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            var rez = MessageBox.Show("Do you really want to delete it?", "Deleting",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (DialogResult.Yes == rez)
+            {
+                if (e.Row == null) return;
+                Backup backup = db.Backup.Find(e.Row.Cells[0].Value);
+                db.Backup.Remove(backup);
+                db.SaveChanges();
+            }
+            else if (DialogResult.No == rez)
+            {
+                //MessageBox.Show("");
+                e.Cancel = true;
+            }
+        }
     }
 }
