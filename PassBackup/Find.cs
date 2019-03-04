@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,13 +24,33 @@ namespace PassBackup
         {
             MessageBox.Show($" combobox - {comboBox1.SelectedIndex} and find {textBox1.Text}");
             int tmp = ComboBoxId_To_Cell(comboBox1.SelectedIndex);
-            if(tmp != -1)
+            if(tmp == -1)
             {
                 
             }
             else
             {
 
+               List<Backup> rez = new List<Backup>();
+                switch (tmp)
+                {
+                    case 1:
+                        rez = db.Backup.SqlQuery($"select * from Backups where site LIKE '%{textBox1.Text}%'").ToList<Backup>();//.FirstOrDefault<Backup>();
+                        
+                        //MessageBox.Show(rez.ToString());
+                        break;
+                    case 2:
+                         rez = db.Backup.SqlQuery($"select * from Backups where URL LIKE '%{textBox1.Text}%'").ToList<Backup>();
+                        
+                        break;
+                    case 3:
+                        rez = db.Backup.SqlQuery($"select * from Backups where Login LIKE '%{textBox1.Text}%'").ToList<Backup>();
+                        break;
+
+                    default:
+                        break;
+                }
+                dataGridView1.DataSource = rez;
             }
         }
 

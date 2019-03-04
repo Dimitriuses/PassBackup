@@ -61,11 +61,26 @@ namespace PassBackup
                 //dataGridView1.DataMember = "Backup";
 
                 Backup backup = form.acount;
-                backup.id = dataGridView1.RowCount + 1;
+                //backup.id = dataGridView1.RowCount + 1;
+                int id = 1;
+
+                foreach(DataGridViewRow row in dataGridView1.Rows)
+                {
+                    //if(db.Backup.Find())
+                    if(id != Convert.ToInt32(row.Cells[0].Value))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        id++;
+                    }
+                }
+                backup.id = id;
                 db.Backup.Add(backup);
                 db.SaveChanges();
                 UpdaterTableWiwer();
-
+                //dataGridView1.Columns[0].
             }
         }
 
