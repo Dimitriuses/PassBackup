@@ -37,6 +37,8 @@
             this.додатиАкаунтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataSet1 = new PassBackup.DataSet1();
+            this.знайтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.статистикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -86,7 +88,9 @@
             // інструментиToolStripMenuItem
             // 
             this.інструментиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.додатиАкаунтToolStripMenuItem});
+            this.додатиАкаунтToolStripMenuItem,
+            this.знайтиToolStripMenuItem,
+            this.статистикаToolStripMenuItem});
             this.інструментиToolStripMenuItem.Name = "інструментиToolStripMenuItem";
             this.інструментиToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
             this.інструментиToolStripMenuItem.Text = "Інструменти";
@@ -121,11 +125,24 @@
             this.dataSet1.DataSetName = "DataSet1";
             this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // знайтиToolStripMenuItem
+            // 
+            this.знайтиToolStripMenuItem.Name = "знайтиToolStripMenuItem";
+            this.знайтиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.знайтиToolStripMenuItem.Text = "Знайти";
+            this.знайтиToolStripMenuItem.Click += new System.EventHandler(this.знайтиToolStripMenuItem_Click);
+            // 
+            // статистикаToolStripMenuItem
+            // 
+            this.статистикаToolStripMenuItem.Name = "статистикаToolStripMenuItem";
+            this.статистикаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.статистикаToolStripMenuItem.Text = "Статистика";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(749, 363);
+            this.ClientSize = new System.Drawing.Size(749, 271);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -151,6 +168,8 @@
         private System.Windows.Forms.ToolStripMenuItem відкритиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem зберегтиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem створитиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem знайтиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem статистикаToolStripMenuItem;
     }
 }
 

@@ -264,5 +264,11 @@ namespace PassBackup
                 e.Cancel = true;
             }
         }
+
+        private void знайтиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Find find = new Find(db);
+            find.Show();
+        }
     }
 }

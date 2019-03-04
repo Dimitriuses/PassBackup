@@ -54,6 +54,7 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
+            this.textBox1 = new PHTextBox("@-(a-z)&-(A-Z)#-(0-9)$-(!?<>...)");
             // 
             // label1
             // 

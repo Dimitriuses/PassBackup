@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PassBackup
 {
-    class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext
     {
         public ApplicationContext() : base("DefaultConnection")
         {
